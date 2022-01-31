@@ -7,6 +7,7 @@ const helmet = require('helmet');
 //TODO: constants file
 
 const rootPath = '/api/v1';
+const app = express();
 
 class Server{
 
@@ -29,7 +30,7 @@ class Server{
     }
 
     routes(){
-        this.app.use(this.rootPath, require('../api/routes/index.routes'));
+        this.app.use(this.rootPath, require('../api/components/index/index.routes'));
     }
 
 
@@ -44,3 +45,5 @@ class Server{
 }
 
 module.exports = Server;
+
+
