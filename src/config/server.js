@@ -6,6 +6,7 @@ const {errorMiddleware} = require('../middlewares/errorMiddleware');
 
 
 
+
 //TODO: constants file
 
 const rootPath = '/api/v1';
@@ -28,7 +29,8 @@ class Server{
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: true}));
         this.app.use(helmet());
-        this.app.use(errorMiddleware);
+        this.app.use(errorMiddleware)
+    
 
       
         

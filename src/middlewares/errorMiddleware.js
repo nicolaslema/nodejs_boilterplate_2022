@@ -5,22 +5,30 @@ const errorHanlder = new ErrorHandler();
 
 
 async function errorMiddleware(err, req, res, next){
-    if(errorHanlder.isOperationalError(err)){
+
+    process.on('uncaughtException', async(err)=>{
+        await errorHanlder.logError(err);
+        if(!errorHanlder.isOperationalError(err)) process.exit(1);
+    })
+    
+    process.on('unhandledRejection', (reason)=>{
+        throw reason;
+    })
+
+
+    if(errorHanlder.isTrustedError(err)){
         next(err);
-        return;
+        return ;
     }
 
     await errorHanlder.logError(err);
+
+   
+   
+    
 }
 
-process.on('uncaughtException', async(error)=>{
-    await errorHanlder.logError(error);
-    if(!errorHanlder.isTrustedError(error)) process.exit(1);
-})
 
-process.on('unhandledRejection', (reason)=>{
-    throw reason;
-})
 
 
 

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --inspect=0.0.0.0:9229 src/index.js",
     "start": "cross-env NODE_ENV=production node src/index.js",
-    "test": "cross-env NODE_ENV=test jest "
+    "test": "cross-env NODE_ENV=test jest"
   },
   "author": "",
   "license": "ISC",

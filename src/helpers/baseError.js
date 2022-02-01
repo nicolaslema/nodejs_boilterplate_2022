@@ -2,16 +2,16 @@ const HttpStatusCode = require('../utils/http.model');
 const express = require('express');
 
 
-const httpCode = HttpStatusCode;
-
 
 class BaseError extends Error{
 
-    constructor(name, statusCode, isOperational, description){
+    constructor(message, methodName, statusCode, isOperational, description){
         super(description);
         Object.setPrototypeOf(this, new.target.prototype);
-        this.name = name;
+        this.message = message;
+        this.methodName = methodName;
         this.statusCode = statusCode;
+        this.description = description;
         this.isOperational = isOperational;
         Error.captureStackTrace(this);
     }

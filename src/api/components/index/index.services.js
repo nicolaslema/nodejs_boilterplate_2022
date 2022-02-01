@@ -8,9 +8,11 @@ class IndexService{
 
 
     async getIndex(){
+        
         try {
-            return "hello world"
+            return "hello world";
         } catch (error) {
+            throw new BaseError("BaseError", httpStatusCodes.INTERNAL_SERVER, error)
             
         }
        
@@ -22,32 +24,30 @@ class IndexService{
     async isValid(){
 
         const isValid = true;
-        const isValidOP = true;
-        if(isValid){
-            //throw new Api404Error("Bad Request", httpStatusCodes.BAD_REQUEST, "API400 ERROR")
-            //throw new BaseError("BaseError", httpStatusCodes.INTERNAL_SERVER)
-            throw new Api404Error("Bad Request", httpStatusCodes.NOT_FOUND, "API400 ERROR")
+     
+        if(!isValid){
+            
+            throw new Api404Error("Bad Requests", "isvalid" )
         }
         
         try {
             await this.someAsync();
         } catch (error) {
-            throw new Api404Error("Bad Request", "API400 ERROR")
-            //throw new BaseError("BaseError", httpStatusCodes.INTERNAL_SERVER, error)
+            
+            throw new BaseError("BaseError", "someAsync", httpStatusCodes.INTERNAL_SERVER, false)
         }
-        return "HelloWorld";
+        return "Hello World!";
     }
-
 
     async  someAsync(){
-    return Promise.resolve();
+    return Promise.reject();
+    //return Promise.resolve();
 
     }
 
 
     
-
-    
+ 
     
    
     

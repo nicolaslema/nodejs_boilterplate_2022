@@ -11,6 +11,7 @@ class ErrorHandler{
     async logError (err){
         console.log(err);
     }
+    
 
     async logErrorMiddleware(err, req, res, next){
         logError(err);
@@ -18,17 +19,11 @@ class ErrorHandler{
     }
 
     returnError(err, req, res, next){
-        res.status(err.httpStatusCodes || 500).send(err.message);
+         res.status(err.httpStatusCodes || 500).send(err.message);
     }
 
 
-    isOperationalError(error){
-        if( error instanceof BaseError){
-            return error.isOperational;
-        }
-        return false;
-    }
-
+   
     isOperationalError(error){
         if( error instanceof BaseError){
             return error.isOperational;
@@ -39,6 +34,8 @@ class ErrorHandler{
     isTrustedError(error){
         return error instanceof BaseError && error.isOperational;
     }
+
+    
 
 }
 
