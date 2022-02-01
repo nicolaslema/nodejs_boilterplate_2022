@@ -1,11 +1,12 @@
 const express = require('express');
 const {Router} = require('express');
 const router = express.Router();
-const {getIndex} = require('./index.controller')
+const {getIndex, getValidTest} = require('./index.controller')
 
 
 
 router.get('/index', getIndex)
+router.get('/isValid', getValidTest)
     
 
 

@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const {errorMiddleware} = require('../middlewares/errorMiddleware');
+
 
 
 //TODO: constants file
@@ -13,7 +15,7 @@ class Server{
 
     constructor(){
         this.app = express();
-        this. port = 8089;
+        this.port = 8089;
         this.rootPath = rootPath;
         this.initMiddlewares();
         this.routes();
@@ -26,6 +28,9 @@ class Server{
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: true}));
         this.app.use(helmet());
+        this.app.use(errorMiddleware);
+
+      
         
     }
 
