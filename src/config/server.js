@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const {erroLogger, errorResponse} = require('../middlewares/errorHandler.middleware')
+
 //TODO: constants file
 const rootPath = '/api/v1';
 const app = express();
@@ -24,6 +26,9 @@ class Server{
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: true}));
         this.app.use(helmet());
+        this.app.use(erroLogger);
+        this.app.use(errorResponse);
+        
     }
 
     routes(){

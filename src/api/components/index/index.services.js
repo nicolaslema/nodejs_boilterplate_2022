@@ -27,7 +27,7 @@ class IndexService{
      
         if(!isValid){
             
-            throw new Api404Error("Bad Requests", "isvalid" )
+            throw new Api404Error("isValid es TRUE","isvalid",  )
         }
         
         try {

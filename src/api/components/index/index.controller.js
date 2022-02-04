@@ -40,4 +40,26 @@ const getValidTest = async(req, res= response, next) =>{
 
 }
 
-module.exports = {getIndex, getValidTest};
+const testErrorHandler = async( req, res = response, next) =>{
+    
+    try {
+        let data = await indexService.isValid();  
+         res.status(200).json({
+             messsage: data
+         });
+    } catch (err) {
+        const message = err instanceof Api404Error ? err.message : 'Generic Error'
+        res.status(err.statusCode).json({err})
+        next(err);
+        
+    }
+
+    
+}
+
+
+
+
+
+
+module.exports = {getIndex, getValidTest, testErrorHandler};
