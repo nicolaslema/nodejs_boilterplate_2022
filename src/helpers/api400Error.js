@@ -1,13 +1,13 @@
 const httpStatusCodes = require('../utils/http.model');
 const BaseError = require('./baseError');
 
-class Api404Error extends BaseError{
+class Api400Error extends BaseError{
     constructor(
         message,
         methodName,
         apiName = "dashboardAPI",
-        statusCode = httpStatusCodes.NOT_FOUND,
-        description = "Not Found.",
+        statusCode = httpStatusCodes.BAD_REQUEST,
+        description = "BAD REQUEST",
         isOperational = true
     )
     {
@@ -15,4 +15,4 @@ class Api404Error extends BaseError{
     }
 }
 
-module.exports = Api404Error;
+module.exports = Api400Error;

@@ -24,15 +24,15 @@ class ErrorHandler{
 
 
    
-    isOperationalError(error){
-        if( error instanceof BaseError){
-            return error.isOperational;
+    isOperationalError(err){
+        if( err instanceof BaseError){
+            return err.isOperational;
         }
         return false;
     }
 
-    isTrustedError(error){
-        return error instanceof BaseError && error.isOperational;
+    isTrustedError(err){
+        return err instanceof BaseError && err.isOperational;
     }
 
     

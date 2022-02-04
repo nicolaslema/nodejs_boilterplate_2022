@@ -26,7 +26,7 @@ const getIndex = async(req, res= response, next) =>{
 const getValidTest = async(req, res= response, next) =>{
     
     try {
-     const data = await indexService.isValid();
+    let data = await indexService.isValid();  
      res.status(200).json({
          messsage: data
      });
